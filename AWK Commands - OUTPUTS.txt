@@ -1,0 +1,359 @@
+
+#DTL Assignments
+
+#MIS: 111903095
+#Name: Shalaka Pawar
+#Div: 2 (S1 Batch)
+
+
+$ awk 'BEGIN {i=1; do{print i; ++i}while(i<6)}'
+1
+2
+3
+4
+5
+
+
+$ awk 'BEGIN {for (i=1; i<=5; ++i)print i}'
+1
+2
+3
+4
+5
+
+
+$ awk 'BEGIN {for (i = 0; i <= 5;++i)print i}'
+0
+1
+2
+3
+4
+5
+
+
+$ echo -e "Apple Juice\nApple Pie\nApple Tart\nApple Cake" | awk '/Apple /'
+Apple Juice
+Apple Pie
+Apple Tart
+Apple Cake
+
+$ echo -e "Apple Juice\nApple Pie\nApple Tart\nApple Cake" | awk '/Apple Juice/'
+Apple Juice
+
+
+$ echo -e "Apple Juice\nApple Pie\nApple Tart\nApple Cake" | awk '/Apple(Juice|Cake)/'
+
+
+$ echo -e "111\n22\n123\n234\n456\n222" | awk '/3+/'
+123
+234
+
+
+$ echo -e "111\n22\n123\n234\n456\n222" | awk '/1+/'
+111
+123
+
+
+$ echo -e "111\n22\n123\n234\n456\n222" | awk '/2+/'
+22
+123
+234
+222
+
+
+$ echo -e "ca\ncat\ncatt\ncattt" | awk '/cat+/'
+cat
+catt
+cattt
+
+
+$ echo -e "ca\ncat\ncatt\ncattt" | awk '/cat*/'
+ca
+cat
+catt
+cattt
+
+
+$ echo -e "ca\ncat\ncatt\ncattt" | awk '/cat/'
+cat
+catt
+cattt
+
+
+$ echo -e "ca\ncat\ncatt" | awk '/cat+/'
+cat
+catt
+
+
+$ echo -e "Call\nTall\nBall\nSmall\nShall" | awk '/Call|Small/'
+Call
+Small
+
+
+$ echo -e "Call\nTall\nBall\nSmall\nShall" | awk '/Sall|Mall/'
+
+
+$ echo -e "Call\nTall\nBall\nSmall\nShall" | awk '/Call|Mall/'
+Call
+
+
+$ echo -e "Call\nTall\nBall\nSmall\nShall" | awk '/Call|Ball/'
+Call
+Ball
+
+$ echo -e "Call\nTall\nBall" | awk '/[B]all/'
+Ball
+
+
+$ echo -e "Call\nTall\nBall" | awk '/[^M]all/'
+Call
+Tall
+Ball
+
+
+$ echo -e "Call\nTall\nBall" | awk '/[M]all/'
+
+
+$ echo -e "Call\nTall\nBall" | awk '/[B]all/'
+Ball
+
+
+$ echo -e "Call\nTall\nBall" | awk '/[^T]all/'
+Call
+Ball
+
+$ echo -e "knife\nknow\nfun\nfin\nfan\nnine" | awk '/n/'
+knife
+know
+fun
+fin
+fan
+nine
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ echo -e "knife\nknow\nfun\nfin\nfan\nnine" | awk '/n$/'
+fun
+fin
+fan
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ echo -e "knife\nknow\nfun\nfin\nfan\nnine" | awk '/f$/'
+
+$ echo -e "Call\nTall\nBall" | awk '/[^M]all/'
+Call
+Tall
+Ball
+
+
+$ echo -e "Call\nTall\nBall" | awk '/[^BT]all/'
+Call
+
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ echo -e "cat\nbat\nfun\nfin\nfan" | awk '/f.n/'
+fun
+fin
+fan
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ echo -e "cat\nbat\nfun\nfin\nfan" | awk '/c.n/'
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ echo -e "cat\nbat\nfun\nfin\nfan" | awk '/n/'
+fun
+fin
+fan
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ echo -e "cat\nbat\nfun\nfin\nfan" | awk '/f/'
+fun
+fin
+fan
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ echo -e "cat\nbat\nfun\nfin\nfan" | awk '/a/'
+cat
+bat
+fan
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ echo -e "cat\nbat\nfun\nfin\nfan" | awk '/fa/'
+fan
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ echo -e "This\nThat\nThen\nThere\nThese\nTheir" | awk '/T/'
+This
+That
+Then
+There
+These
+Their
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ echo -e "This\nThat\nThen\nThere\nThese\nTheir" | awk '/Th/'
+This
+That
+Then
+There
+These
+Their
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ awk '{print NR,$1,$NF}' employee.txt
+1 ajay 45000
+2 sunil 25000
+3 varun 50000
+4 amit 47000
+5 tarun 15000
+6 deepak 23000
+7 sunil 13000
+8 satvik 80000
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ awk 'NR==3, NR==6 {print NR,$0}' employee.txt
+3 varun manager sales 50000
+4 amit manager account 47000
+5 tarun peon sales 15000
+6 deepak clerk sales 23000
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ awk 'NR==3, NR==6 {print $0}' employee.txt
+varun manager sales 50000
+amit manager account 47000
+tarun peon sales 15000
+deepak clerk sales 23000
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ awk 'NR==3, NR==6 {print NR,$1,$2}' employee.txt
+3 varun manager
+4 amit manager
+5 tarun peon
+6 deepak clerk
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ awk '{print NR" - "$1}' employee.txt
+1 - ajay
+2 - sunil
+3 - varun
+4 - amit
+5 - tarun
+6 - deepak
+7 - sunil
+8 - satvik
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ awk '{print NR" - "$2}' employee.txt
+1 - manager
+2 - clerk
+3 - manager
+4 - manager
+5 - peon
+6 - clerk
+7 - peon
+8 - director
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ awk '{print NR"\t"$2}' employee.txt
+1       manager
+2       clerk
+3       manager
+4       manager
+5       peon
+6       clerk
+7       peon
+8       director
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ awk 'length($0) > 25' employee.txt
+ajay manager account 45000
+amit manager account 47000
+satvik director purchase 80000
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ awk 'length($0) > 20' employee.txt
+ajay manager account 45000
+sunil clerk account 25000
+varun manager sales 50000
+amit manager account 47000
+tarun peon sales 15000
+deepak clerk sales 23000
+sunil peon sales 13000
+satvik director purchase 80000
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ awk 'length($0) > 28' employee.txt
+satvik director purchase 80000
+
+
+$ cat employee.txt
+ajay manager account 45000
+varun manager sales 50000
+amit manager account 47000
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ awk '/manager/ {print}' employee.txt
+ajay manager account 45000
+varun manager sales 50000
+amit manager account 47000
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ awk '{print}' employee.txt
+ajay manager account 45000
+varun manager sales 50000
+amit manager account 47000
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ awk '/dance/ {print}' employee.txt
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ awk '{print $1,$4}' employee.txt
+ajay 45000
+varun 50000
+amit 47000
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ nano employee.txt
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ cat employee.txt
+ajay manager account 45000
+sunil clerk account 25000
+varun manager sales 50000
+amit manager account 47000
+tarun peon sales 15000
+deepak clerk sales 23000
+sunil peon sales 13000
+satvik director purchase 80000
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ awk '{print}' employee.txt
+ajay manager account 45000
+sunil clerk account 25000
+varun manager sales 50000
+amit manager account 47000
+tarun peon sales 15000
+deepak clerk sales 23000
+sunil peon sales 13000
+satvik director purchase 80000
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ awk '{print NR,$0}' employee.txt
+1 ajay manager account 45000
+2 sunil clerk account 25000
+3 varun manager sales 50000
+4 amit manager account 47000
+5 tarun peon sales 15000
+6 deepak clerk sales 23000
+7 sunil peon sales 13000
+8 satvik director purchase 80000
+
+Shalaka@LAPTOP-54R2098U /cygdrive/c/Users/Shalaka/Desktop/Study/SY/DTL/awk
+$ awk '{print NR,$1,$3}' employee.txt
+1 ajay account
+2 sunil account
+3 varun sales
+4 amit account
+5 tarun sales
+6 deepak sales
+7 sunil sales
+8 satvik purchase
